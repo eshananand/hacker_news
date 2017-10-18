@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hacknews.hacknews.R;
 import com.hacknews.hacknews.activities.WebActivity;
@@ -51,9 +52,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Intent intent = new Intent(mContext, WebActivity.class);
                 Bundle bundle = new Bundle();
                 int position = holder.getAdapterPosition();
-                bundle.putString("URL", hitList.get(position).getUrl());
-                intent.putExtra("URL_BUNDLE", bundle);
-                mContext.startActivity(intent);
+                if(hitList.get(position).getUrl() != null && !hitList.get(position).getUrl().equals(""))
+                {
+                    bundle.putString("URL", hitList.get(position).getUrl());
+                    intent.putExtra("URL_BUNDLE", bundle);
+                    mContext.startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, "No Url linked", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -67,6 +73,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.tv_title.setText(hitList.get(position).getTitle());
         holder.tv_points.setText(hitList.get(position).getPoints() + "");
         holder.tv_author.setText(hitList.get(position).getAuthor());
+        if(hitList.get(position).getNumComments() != null)
         holder.tv_comments_no.setText(hitList.get(position).getNumComments() + "");
         holder.tv_url.setText(hitList.get(position).getUrl());
     }
