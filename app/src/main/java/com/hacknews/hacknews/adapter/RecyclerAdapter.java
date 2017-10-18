@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hacknews.hacknews.R;
+import com.hacknews.hacknews.activities.WebActivity;
 import com.hacknews.hacknews.models.Hit;
 
 import java.util.List;
@@ -41,8 +42,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         // set the view's size, margins, paddings and layout parameters
         v.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
 
+        final ViewHolder holder = new ViewHolder(v);
+        holder.container.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(mContext, WebActivity.class);
+                Bundle bundle = new Bundle();
+                int position = holder.getAdapterPosition();
+                bundle.putString("URL", hitList.get(position).getUrl());
+                intent.putExtra("URL_BUNDLE", bundle);
+                mContext.startActivity(intent);
+            }
+        });
 
-        return new ViewHolder(v);
+        return holder;
     }
 
     @Override
