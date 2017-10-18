@@ -117,7 +117,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnSearch:
                 progressbar.setVisibility(View.VISIBLE);
                 hitList.clear();
-                mAdapter.notifyDataSetChanged();
+                if(mAdapter != null)
+                {
+                    mAdapter.notifyDataSetChanged();
+                }
                 getApiDataTask = new GetApiDataTask(MainActivity.this, etSearch.getText().toString());
                 getApiDataTask.getNewsData();
                 break;
