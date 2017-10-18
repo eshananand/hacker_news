@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hacknews.hacknews.R;
+import com.hacknews.hacknews.adapter.RecyclerAdapter;
 import com.hacknews.hacknews.apitask.GetApiDataTask;
 import com.hacknews.hacknews.application.App;
 import com.hacknews.hacknews.models.Hit;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPref mSharedPref;
     private GetApiDataTask getApiDataTask;
     private List<Hit> hitList = new ArrayList<>();
+    private RecyclerAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @BindView(R.id.etSearch)
     EditText etSearch;
@@ -85,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 hitList.add(news.hits.get(i));
             }
 
+            mAdapter = new RecyclerAdapter(this, hitList);
+            mLayoutManager = new LinearLayoutManager(this.getApplicationContext());
+            newsRecycler.setLayoutManager(mLayoutManager);
+            newsRecycler.setAdapter(mAdapter);
+            progressbar.setVisibility(View.GONE);
+
         } else {
             Toast.makeText(MainActivity.this, "No News present", Toast.LENGTH_LONG).show();
 
@@ -99,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (id)
         {
             case R.id.btnSearch:
+                progressbar.setVisibility(View.VISIBLE);
                 getApiDataTask = new GetApiDataTask(MainActivity.this, etSearch.getText().toString());
                 getApiDataTask.getNewsData();
                 break;
