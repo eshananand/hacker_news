@@ -7,6 +7,7 @@ import com.hacknews.hacknews.R;
 import com.hacknews.hacknews.application.App;
 import com.hacknews.hacknews.models.Hit;
 import com.hacknews.hacknews.models.News;
+import com.hacknews.hacknews.models.UpdateNewEvent;
 import com.hacknews.hacknews.util.Logger;
 
 import org.json.JSONArray;
@@ -37,12 +38,14 @@ public class GetApiDataTask
     private static final String TAG = GetApiDataTask.class.getSimpleName();
     private static Retrofit retrofit = null;
     private Activity mContext;
+    private EventBus eventBus;
     private String category;
 
 
     public GetApiDataTask( Activity context,String category) {
         mContext = context;
         this.category = category;
+        eventBus = EventBus.getDefault();
     }
 
     public static Retrofit getClient(Activity activity) {
@@ -99,6 +102,7 @@ public class GetApiDataTask
                             BoxStore boxStore = ((App)mContext.getApplication()).getBoxStore();
                             Box<News> newsBox = boxStore.boxFor(News.class);
                             newsBox.put(news);
+                            eventBus.post(new UpdateNewEvent(news.getId()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
