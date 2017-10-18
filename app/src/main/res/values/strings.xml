@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HackNews</string>
+    <string name="url">http://hn.algolia.com/api/v1/</string>
 </resources>
