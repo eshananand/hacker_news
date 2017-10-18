@@ -1,0 +1,111 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2775163928850866723",
+      "lastPropertyId": "10:2508564229224416813",
+      "name": "Hit",
+      "properties": [
+        {
+          "id": "1:406756871447352348",
+          "name": "id"
+        },
+        {
+          "id": "2:3753403390285166904",
+          "name": "createdAt"
+        },
+        {
+          "id": "3:6573014985333484472",
+          "name": "title"
+        },
+        {
+          "id": "4:2219048774351635364",
+          "name": "url"
+        },
+        {
+          "id": "5:4715980600054438600",
+          "name": "author"
+        },
+        {
+          "id": "6:7327485446399281200",
+          "name": "points"
+        },
+        {
+          "id": "7:3151131097536419787",
+          "name": "numComments"
+        },
+        {
+          "id": "8:4262899604094688286",
+          "name": "createdAtI"
+        },
+        {
+          "id": "9:8991680111710041007",
+          "name": "objectID"
+        },
+        {
+          "id": "10:2508564229224416813",
+          "indexId": "1:3666907591783966877",
+          "name": "newsToOneId"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:4494414973076345127",
+      "lastPropertyId": "9:6171512956452852333",
+      "name": "News",
+      "properties": [
+        {
+          "id": "1:3948397867274955233",
+          "name": "id"
+        },
+        {
+          "id": "2:6494796347245239872",
+          "name": "nbHits"
+        },
+        {
+          "id": "3:9091546088564278157",
+          "name": "page"
+        },
+        {
+          "id": "4:5893292938668426084",
+          "name": "nbPages"
+        },
+        {
+          "id": "5:424491237384942469",
+          "name": "hitsPerPage"
+        },
+        {
+          "id": "6:7962025158415512383",
+          "name": "processingTimeMS"
+        },
+        {
+          "id": "7:131187522008825569",
+          "name": "exhaustiveNbHits"
+        },
+        {
+          "id": "8:3368430708052390976",
+          "name": "query"
+        },
+        {
+          "id": "9:6171512956452852333",
+          "name": "params"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:4494414973076345127",
+  "lastIndexId": "1:3666907591783966877",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
