@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSharedPref = SharedPref.getInstance(this);
         newsId = mSharedPref.getNewsId();
         btnSearch.setOnClickListener(this);
+
+        setUpRecycleView();
     }
 
     @Override
@@ -79,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Logger.d("LoginINAct", " inside on Event received");
         newsId = event.getMessage();
 
+        setUpRecycleView();
+    }
+
+    private void setUpRecycleView()
+    {
         if (newsId > 0) {
             news = newsBox.get(newsId);
             mSharedPref.saveNewsId(newsId);
@@ -109,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.btnSearch:
                 progressbar.setVisibility(View.VISIBLE);
+                hitList.clear();
+                mAdapter.notifyDataSetChanged();
                 getApiDataTask = new GetApiDataTask(MainActivity.this, etSearch.getText().toString());
                 getApiDataTask.getNewsData();
                 break;
